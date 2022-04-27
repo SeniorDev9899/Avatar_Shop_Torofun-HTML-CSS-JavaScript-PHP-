@@ -1,0 +1,46 @@
+.game-logo{
+	border-radius: 50%;
+	border: 2px solid #0f4359;
+}
+
+@media (max-width: 991.98px) {
+	.sidenav {
+		height: calc(100vh - 62px);
+		top: 62px;
+	}
+}
+
+#language_list li:hover {
+	background-color: #c7bba3;
+	border-top-color: #b7a98e;
+	border-bottom: solid #b7a98e 1px;
+}
+
+#language_list .dropdown-item:hover, #language_list .dropdown-item:focus {
+    color: #4f828d;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+#language_list .sidenav a:hover {
+    color: #4f828d;
+}
+
+#language_list img {
+	height: 27px;
+	width: 27px;
+	object-fit: cover;
+}
+
+#language_menu {
+	border-bottom: solid #c19a7a 2px;
+	cursor: pointer;
+}
+
+#language_menu p {
+	color: #023e44;
+}
+
+#language_menu p:hover {
+	color: #4f828d;
+}

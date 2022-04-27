@@ -1,0 +1,309 @@
+<div class="container">
+	<div class="my-md-5 my-1 pt-0">
+		<div class="d-flex justify-content-center no-gutters">
+			<div class="px-5"><img src="https://cdn.++(domain)++/img/chain.png" alt="chain" class="chain"></div>        
+			<div class="px-5"><img src="https://cdn.++(domain)++/img/chain.png" alt="chain" class="chain"></div>     
+		</div>  
+		<div class="d-flex justify-content-center">     
+			<h1 class="display-4 letterStyle-4">==(my_account)==</h1>
+		</div>    
+
+		<!-- <div id="top"></div> -->
+		<!-- <div class="container px-0 logged" style="background:#FAFAFA;"> -->
+		<div class="brownstyle container px-0 logged mb-5">
+			<div class="card-header">
+				<div class="container-custom">
+				<ul class="nav nav-pills" id="pills-tab" role="tablist">
+					<li class="nav-item">
+						<a id="user-info-tab" class="nav-link active h6 mb-0" data-toggle="pill" href="#user-info" role="tab" aria-controls="user-info" aria-selected="true">==(profile)==</a>
+					</li>
+					<!--
+						<li class="nav-item">
+							<a id="payment-info-tab" class="nav-link h6 mb-0" data-toggle="pill" href="#payment-info" role="tab" aria-controls="payment-info" aria-selected="false">Detalle de pagos</a>
+						</li>
+						-->
+					<li class="nav-item">
+						<a id="my-games-tab" class="nav-link h6 mb-0" data-toggle="pill" href="#my-games" role="tab" aria-controls="my-games" aria-selected="false">==(my_games)==</a>
+					</li>
+				</ul>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="tab-pane fade show active animated fadeInUp fast" id="user-info" role="tabpanel" aria-labelledby="user-info-tab">
+					<div class="container">
+						<h3 class="h1">==(profile)==</h3>
+						<hr>
+						<div class="row">
+							<div class="col-xl-4 col-lg-3 d-flex justify-content-center align-items-xl-end align-items-lg-start align-items-end bg-curtains">
+								<a href="https://==(language)==.++(domain)++/==(url_avatar)==" class="d-flex">
+									<img src="" class="avatar" id="avatarAccount" />
+								</a>
+							</div>
+							<div class="col-xl-8 col-lg-9">
+								<div class="form-group row">
+									<label for="Username" class="col-sm-4 col-form-label h5">
+										<i class="fas fa-user mr-3"></i>==(username)==:
+									</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="Username" value="Username">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-4 col-form-label h5" for="Password">
+										<i class="fas fa-lock mr-3"></i>==(password)==:
+									</label>
+									<div class="col-sm-8 d-flex flex-row flex-wrap justify-content-between">
+										<input type="text" readonly 
+												class="form-control-plaintext w-25" 
+												id="Password" 
+												placeholder="********" 
+												value="********">
+										<div class="d-flex justify-content-center d-none pt-2" id="change_pass">
+											<a href="#changePassword" data-toggle="collapse" class="btn btn-secondary btn-sm" role="button" aria-expanded="false" aria-controls="changePassword">==(change_password)==</a>
+										</div>
+									</div>
+								</div>
+								<div id="changePassword" class="collapse py-2 w-100">
+									<div id="NotMailYet">
+										<div class="alert alert-danger text-center mt-3 passerror" id="password_not_mail_yet" role="alert" >
+											<i class="far fa-times-circle mr-3"></i>
+											==(change_password_alert_txt)==
+										</div>
+									</div>
+									<div id="changePasswordDiv">
+										<div class="d-none actualPassword">
+											<label for="actualPassword" class="col-form-label">==(insert_password)==:</label>
+											<div class="d-flex flex-row row">
+												<div class="col-md-6 input-group show_hide_password">
+													<input type="password" class="form-control passinput" id="actualPassword" placeholder="==(actual_password)==">
+													<div class="input-group-append">
+														<span class="input-group-text togglepass"><i class="fa fa-eye" aria-hidden="true"></i></span>
+													</div>
+												</div>
+											</div>
+											<div class="alert alert-danger text-center mt-4 d-none passerror" id="incorrect_password" role="alert" >
+												<i class="far fa-times-circle mr-3"></i>
+												==(incorrect_password_txt)== <a href="==(url_recover)==">==(forgot_password)==</a>
+											</div>
+										</div>
+										<div class="confirmPassword">
+											<label for="newPassword" class="col-form-label">==(write_new_password_txt)==:</label>
+											<div class="d-flex flex-row row">
+												<div class="col-md-6 input-group show_hide_password">
+													<input type="password" class="form-control passinput" id="newPassword" placeholder="==(new_password_txt)==">
+													<div class="input-group-append">
+														<span class="input-group-text togglepass"><i class="fa fa-eye" aria-hidden="true"></i></span>
+													</div>
+												</div>
+												<div class="col-md-6 input-group show_hide_password mt-md-0 mt-4">
+													<input type="password" class="form-control passinput" id="newPasswordRepeat" placeholder="==(repeat_your_password_txt)==">
+													<div class="input-group-append">
+														<span class="input-group-text togglepass"><i class="fa fa-eye" aria-hidden="true"></i></span>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex flex-row row">
+												<div class="col-12 d-flex justify-content-end mt-4">
+													<button class="btn btn-primary submit_pass">==(change_password_txt)==</button>
+												</div>
+											</div>
+											<div class="alert alert-danger text-center mt-4 d-none passerror" id="password_not_mail" role="alert" ><i class="far fa-times-circle mr-3"></i>
+											==(change_password_alert_txt)==
+											</div>
+											<div class="alert alert-danger text-center mt-4 d-none passerror" id="password_not_match" role="alert" ><i class="far fa-times-circle mr-3"></i>
+											==(danger_match)==
+											</div>
+											<div class="alert alert-danger text-center mt-4 d-none passerror" id="generic_error_pass" role="alert"><i class="far fa-times-circle mr-3"></i>
+											==(danger_error)==
+											</div>
+										</div>
+										<div class="d-none changePasswordConfirmDiv">
+											<div class="verifyDiv">
+												<p class="pt-2">==(recovery_password_step2_txt)==</p>
+											</div>
+											<div class="form-group d-flex flex-row row py-2 verifyDiv" id="verifyDiv">
+												<label for="verifyPassword" class="col-sm-3 col-form-label text-capitalize h5"><i class="fas fa-shield-alt mr-3"></i>==(code_txt)==</label>
+												<div class="col-md-6 col-sm-9">
+													<input type="text" class="form-control" id="verifyPassword" placeholder="==(code_txt)==" value="">
+												</div>
+												<div class="col-md-3 col-12 d-flex justify-content-end mt-md-0 mt-4">
+													<button class="btn btn-primary submit_codep">==(validate_txt)==</button>
+												</div>
+											</div>
+											<div class="alert alert-danger text-center mt-4 d-none passerror" id="wrong_code_alert" role="alert"><i class="far fa-times-circle mr-3"></i>
+											==(wrong_code_txt)==
+											</div>
+											<div class="alert alert-danger text-center mt-4 d-none passerror" id="generic_error_pass2" role="alert"><i class="far fa-times-circle mr-3"></i>
+											==(generic_error_txt)==
+											</div>
+											<div class="alert alert-success text-center mt-4 d-none passerror" id="password_changed" role="alert"><i class="far fa-check-circle mr-3"></i>
+											==(password_changed_txt)==
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<hr>
+								<div id="emailbox" class="form-group d-flex flex-row row py-2 yes-mail d-none">
+									<label class="col-lg-2 col-md-3 col-sm-6  col-form-label h6 label" for="currentEmail">
+										<i class="fas fa-envelope mr-3"></i>==(email)==:
+									</label>
+									<div class="col-lg-5 col-md-4 col-sm-6  label">
+										<input type="text" readonly class="form-control-plaintext" id="currentEmail" value="example@email.com">
+									</div>
+									<div class="col-md-5 col-sm-12 d-flex justify-content-md-end label">
+										<a href="#changeEmail" data-toggle="collapse" class="btn btn-secondary btn-sm" role="button" aria-expanded="false" aria-controls="changeEmail">==(change_mail)==</a>
+									</div>
+									<div id="changeEmail" class="collapse px-3 py-2 w-100">
+										<div id="changeMailDiv d-flex justify-content-end">
+											<label for="inputEmailNew" class="col-form-label">==(mail_required)==</label>
+											<div class="d-flex flex-row row">
+												<div class="col-sm-8 input-group">
+													<input type="email" class="form-control" id="inputEmailNew" placeholder="==(email)==">
+												</div>
+												<div class="col-sm-4 d-flex justify-content-end mt-sm-0 mt-4">
+													<button class="btn btn-primary submit_mailn">==(send)==</button>
+												</div>
+											</div>
+										</div>
+										<div class="alert alert-success text-center mt-3 w-100 d-none mailerror" id="mailn_sent" role="alert"><i class="far fa-check-circle mr-3"></i>
+											==(mail_sent_txt)==
+										</div>
+										<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="no_mailn" role="alert"><i class="far fa-times-circle mr-3"></i>
+											==(mail_required)==
+										</div>
+										<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="generic_error_mailn" role="alert"><i class="far fa-times-circle mr-3"></i>
+											==(generic_error_txt)==
+										</div>
+									</div>
+								</div>
+								<div class="no-mail d-none mailsent">
+									<p class=" pt-2">==(link_mail_txt)==</p>
+								</div>
+								<div class="form-group no-mail d-none" id="link_mail">
+									<div class="d-flex flex-row row">
+										<label for="inputEmail" class="col-sm-3 col-form-label h5 mailsent label"><i class="fas fa-envelope mr-3"></i>==(email)==:</label>
+										<div class="col-md-6 col-sm-9 mailsent">
+											<input type="email" class="form-control" id="inputEmail" placeholder="==(your_email_txt)==">
+										</div>
+										<div class="col-md-3 col-12 d-flex justify-content-end mt-md-0 mt-4 mailsent">
+											<button class="btn btn-primary submit_mail">==(send)==</button>
+										</div>	
+									</div>
+									<div class="alert alert-success text-center mt-3 w-100 d-none mailerror" id="mail_sent" role="alert"><i class="far fa-check-circle mr-3"></i>
+										==(mail_sent_txt)==
+									</div>
+									<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="no_mail" role="alert"><i class="far fa-times-circle mr-3"></i>
+										==(mail_required)==
+									</div>
+									<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="generic_error_mail1" role="alert"><i class="far fa-times-circle mr-3"></i>
+										==(generic_error_txt)==
+									</div>
+								</div>
+								<div class="code-mail d-none codesent">
+									<p class=" pt-2">==(mail_link_code_confirm_txt)==</p>
+								</div>
+								<div class="form-group py-2 code-mail d-none">
+									<div class="row">
+										<label for="verifyEmail" class="col-sm-3 col-form-label h5 text-capitalize codesent">
+											<i class="fas fa-shield-alt mr-3"></i>==(code_txt)==
+										</label>
+										<div class="col-md-6 col-sm-9 codesent">
+											<input type="text" class="form-control" id="verifyEmail" placeholder="==(code_txt)==" value="">
+										</div>
+										<div class="col-md-3 col-12 d-flex justify-content-end mt-md-0 mt-4 codesent">
+											<button class="btn btn-primary submit_code">==(validate_txt)==</button>
+										</div>	
+									</div>
+									<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="wrong_code_mail" role="alert"><i class="far fa-times-circle mr-3"></i>
+										==(wrong_code_txt)==
+									</div>
+									<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="mailinuse" role="alert"><i class="far fa-times-circle mr-3"></i>
+										==(mailinuse_txt)==
+									</div>
+									<div class="alert alert-danger text-center mt-3 w-100 d-none mailerror" id="generic_error_mail2" role="alert"><i class="far fa-times-circle mr-3"></i>
+										==(generic_error_txt)==
+									</div>
+									<div class="alert alert-success text-center mt-3 w-100 d-none mailerror" id="mail_linked" role="alert"><i class="far fa-check-circle mr-3"></i>
+										==(mail_linked_txt)==
+									</div>
+								</div>
+								<hr>
+								<div>
+									<div>
+										<p class=" pt-2">==(link_socials_txt)==</p>
+									</div>
+									<div class="d-flex flex-row row flex-wrap align-items-center justify-content-center socialbtns">
+										<div class="col-md-6 d-flex flex-column">
+											<div class="d-flex flex-row justify-content-between align-items-center mx-lg-0 my-2 mr-md-3">
+												<button type="button" class="btn btn-google" data-opt="add">
+												<i class="fab fa-google fa-lg p-2"></i><span class="ml-4">Google</span>
+												</button>
+												<button type="button" class="btn btn-toggle cursor-default ml-2" data-toggle="" aria-pressed="false" autocomplete="off" data-id="GC">
+												<div class="handle"></div>
+												</button>
+											</div>
+										</div>
+										<div class="col-md-6 d-flex flex-column">
+											<div class="d-flex flex-row justify-content-between align-items-center mx-lg-0 my-2 mr-md-3">
+												<button type="button" class="btn btn-facebook" data-opt="add">
+												<i class="fab fa-facebook-f fa-lg p-2"></i><span class="ml-4">Facebook</span>
+												</button>
+												<button type="button" class="btn btn-toggle cursor-default ml-2" data-toggle="" aria-pressed="false" autocomplete="off" data-id="FB">
+												<div class="handle"></div>
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="d-flex flex-column align-items-center justify-content-center mb-0 pb-2 socialbtns">
+										<div class="alert alert-danger text-center mt-3 w-100 d-none socialerror" role="alert" id="social_in_use"><i class="far fa-times-circle mr-3"></i>
+											==(socialinuse_txt)==
+										</div>
+										<div class="alert alert-danger text-center mt-3 w-100 d-none socialerror" role="alert" id="genericerror_social"><i class="far fa-times-circle mr-3"></i>
+											==(generic_error_txt)==
+										</div>
+										<div class="alert alert-success text-center mt-3 w-100 d-none socialerror" role="alert" id="social_linked"><i class="far fa-check-circle mr-3"></i>
+											==(social_linked_txt)==
+										</div>
+										<div class="alert alert-danger text-center mt-3 w-100 d-none socialerror" role="alert" id="social_unlink_act"><i class="far fa-times-circle mr-3"></i>
+											==(social_unlink_act_txt)==
+										</div>
+										<div class="alert alert-success text-center mt-3 w-100 d-none socialerror" role="alert" id="social_unlinked"><i class="far fa-check-circle mr-3"></i>
+											==(social_unlinked_txt)==
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="tab-pane fade animated fadeInUp fast pb-3" id="my-games" role="tabpanel" aria-labelledby="my-games-tab" style="display:none">
+					<div class="container-fluid d-flex flex-row align-items-baseline breadcrumb-nav-post px-0 mx-0">
+						<div class="w-100 px-3">
+							<p class="h2 text-capitalize mb-0">==(all_your_games_txt)==</p>
+							<hr>
+						</div>
+					</div>
+					<div class="d-flex flex-row flex-wrap" id="myGamesContainer">
+						<div class="container">
+							<div class="d-flex flex-row justify-content-center">
+								<div><img class="avatar-my-games" src="https://cdn.++(domain)++/img/avatars/avatar1-sad.png" alt="Torofun avatar"></div>
+								<div class="d-flex flex-column justify-content-between pl-3 primary-text">
+									<div class="mt-5">
+										<p class="h4 display-4"><i class="far fa-check-circle mr-3"></i>==(oh_oh_txt)==</p>
+										<p class="h4">==(have_not_played_yet)==</p>
+									</div>
+									<div class="my-2">
+										<p class="d-flex justify-self-end py-2">==(make_the_troll_happy)==</p>
+										<a href="/" class="btn btn-primary" data-unsp-sanitized="clean">==(got_it_txt)==</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

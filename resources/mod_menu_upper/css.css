@@ -1,0 +1,214 @@
+#nick_on_bar{
+	padding-top: 10px;
+}
+
+.nav-box-shadow {
+	box-shadow: 0 1px 10px 2px rgb(0 0 0 / 20%);
+}
+
+a#el_flag {
+    font-family: 'greek-SemiBold';
+}
+
+a#ru_flag {
+    font-family: 'cyrillic';
+}
+
+#navbarSupportedContent {
+    flex-grow: 1;
+}
+
+#torocoins {
+    background-color: #eadcca;
+    border: 1px solid #63280a;
+    -webkit-box-shadow: 0 0 0 3px #c19a7a, 0 0 0 6px #63280a, 0 0 0 7px #231f20;
+    box-shadow: 0 0 0 3px #c19a7a, 0 0 0 6px #63280a, 0 0 0 7px #231f20;
+    border-radius: 0.45rem;
+    padding: 0;
+    overflow-y: hidden;
+    height: 31px;
+    font-size: 1.25rem;
+    line-height: 1.65rem;
+    font-weight: 700;
+}
+#torocoins a {
+    color: #63280a;
+}
+#torocoins a:hover  {
+    color: #552208;
+}
+#torocoins:hover  .more-coins-btn{
+    background-color: #f9a11e;
+    transition: .3s ease all;
+}
+.more-coins-btn {
+    text-shadow: 1px 1px 1px #995900;
+    background-color: #f9b34b;
+    transition: .3s ease all;
+}
+
+#nick_on_bar {
+    background-color: #4f828d;
+    border: 1px solid #63280a;
+    -webkit-box-shadow: 0 0 0 3px #c19a7a, 0 0 0 6px #63280a, 0 0 0 7px #231f20;
+    box-shadow: 0 0 0 3px #c19a7a, 0 0 0 6px #63280a, 0 0 0 7px #231f20;
+    border-radius: 0.45rem;
+    padding: 0rem 0rem .05rem 1rem;
+    height: 31px;
+    font-size: 1.25rem;
+    line-height: 1.65rem;
+    font-weight: 700;
+}
+#nick_on_bar a{
+    color:  #ecebda;
+    line-height: 1.5rem;
+    transition: .3s ease all;
+}
+#nick_on_bar a:hover{
+    color: #e5e3cc;
+    transition: .3s ease all;
+}
+#nick_on_bar a:hover .account-btn{
+    line-height: 1.5rem;
+    background-color: #012529;
+    transition: .3s ease all;
+}
+.account-btn {
+    height: 29px;
+    border-radius: 0 0.45rem 0.45rem 0;
+    background-color: #023e44;
+    transition: .3s ease all;
+    object-fit: contain;
+}
+.logout-overlay {
+    background-color: rgb(52, 58, 64, 0);
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    transition: .3s ease all;
+    margin-top: 2px;
+    border: 3px solid #023e44;
+}
+#logout_bar:hover .logout-overlay {
+    background-color: rgb(52, 58, 64, 0.095);
+    transition: .3s ease all;
+}
+#logout_bar:focus .logout-overlay {
+    background-color: rgb(52, 58, 64, 0.05);
+    border: 4px solid #023e44;
+    transition: .3s ease all;
+}
+.register-icon {
+    background-image: url(https://cdn.torofun.com/img/icons-menu/sign-up.png);
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 57px;
+    background-size: contain;
+    transition: .3s ease all;
+}
+.register-icon:hover {
+    background-image: url(https://cdn.torofun.com/img/icons-menu/sign-up-hover.png);
+    transition: .3s ease all;
+}
+.register-icon:focus {
+    background-image: url(https://cdn.torofun.com/img/icons-menu/sign-up-focus.png);
+    transition: .3s ease all;
+}
+@media (min-width: 992px) {
+    .nav-height {
+        height: 75px;
+    }   
+    #torocoins {
+        display: flex;
+    } 
+    #nick_on_bar {
+        display: flex;
+    }
+    #avataronmenu {
+        height: 85px;
+        transition: .3s ease all;
+        object-fit: contain;
+        position: absolute;
+        left: 17px;
+        top: 22px;
+    }
+    #avataronmenu:hover {
+        height: 110px;
+        transition: .3s ease all;
+        left: 10px;
+    }
+    #login {
+        background-image: url(//cdn.torofun.com/img/icons/avatar-bg3.png);
+        background-repeat: no-repeat;
+        width: 104px;
+        height: 115px;
+        margin-top: 16px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    a#login:hover {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .nav-height {
+        height: 63px;
+    }    
+    #torocoins {
+        display: flex;
+    }
+    #nick_on_bar {
+        display: flex;
+    }
+    #avataronmenu {
+        height: 63px;
+        transition: .3s ease all;
+    }
+    #avataronmenu:hover {
+        height: 100px;
+        transition: .3s ease all;
+        margin-top: .5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #torocoins {
+        display: none!important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    #nick_on_bar, #logout_bar, #register_upper_menu {
+        display: none!important;
+    }
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #05300b;
+    -webkit-box-shadow: 0 0 0px 1000px #a9c8bf inset, 0 0 0 3px #f9c77d, 0 0 0 4px #c19a7a, 0 0 0 8px #05300b;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+input:-webkit-autofill::first-line,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	font-family: "Dosis";
+  	font-size: 1.1rem;
+  	font-weight: 700;
+}

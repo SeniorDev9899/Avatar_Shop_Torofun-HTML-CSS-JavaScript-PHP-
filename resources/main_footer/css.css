@@ -1,0 +1,233 @@
+<style>
+
+.footer-social {
+    color: white;
+    list-style-type: none;
+    text-align: center
+}
+
+.footer-social h4 {
+    margin: 0
+}
+
+.footer-social ul {
+    padding: 0
+}
+
+.footer-social li {
+    font-size: 24px;
+    float: none;
+    display: inline-block;
+}
+
+.footer-social li>a {
+    text-decoration: none;
+    font-weight: bolder;
+    color: white;
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: block;
+    width: 170px;
+}
+.footer-social li>a>span{ font-size: 15pt; }
+
+.footer-social li>a>i {
+    margin-right: 15px;
+    font-size: 16pt;
+}
+
+.footer-social li>a.facebook {
+    background-color: #3b5998
+}
+
+.footer-social li>a.twitter {
+    background-color: #4099FF
+}
+
+.footer-social li>a.googleplus {
+    background-color: #dd4b39
+}
+
+.footer-social li>a.pinterest {
+    background-color: #cb132d
+}
+
+.footer-social li>a.youtube {
+    background-color: #cd201f
+}
+
+.footer-social li>a:hover.facebook,.footer-social li a:focus.facebook {
+    background-color: #4c70ba
+}
+
+.footer-social li>a:hover.twitter,.footer-social li a:focus.twitter {
+    background-color: #73b4ff
+}
+
+.footer-social li>a:hover.googleplus,.footer-social li a:focus.googleplus {
+    background-color: #e47365
+}
+
+.footer-social li>a:hover.pinterest,.footer-social li a:focus.pinterest {
+    background-color: #eb2642
+}
+
+.footer-social li>a:hover.youtube,.footer-social li a:focus.youtube {
+    background-color: #e23e3d
+}
+
+.footer-social li.active>a,.footer-social li.active>a:hover,.footer-social li.active>a:focus {
+    border-color: white;
+    color: #555;
+    background-color: white
+}
+
+.footer-description {
+    padding-bottom: 15px;
+    border-top: 1px solid #2d2d2d;
+    color: #c6c6c6
+}
+
+.footer-description h1,.footer-description h3 {
+    color: #eee;
+    margin: 0;
+    font-size: 18px;
+    padding: 0;
+    padding-top: 15px
+}
+
+.footer-description strong {
+    color: #dadada
+}
+
+.footer-description p {
+    font-size: 14px;
+    margin: 0;
+    color: #bcbcbc
+}
+
+.footer-inner-links {
+    padding-top: 15px;
+    border-top: 1px solid #2d2d2d
+}
+
+.footer-inner-links ul {
+    padding-left: 0;
+    padding-right: 30px;
+    float: left;
+    list-style: none;
+    color: #555
+}
+
+.footer-inner-links ul h4 {
+    margin-top: 0;
+    color: #d1d1d1
+}
+
+.footer-inner-links ul li {
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.footer-inner-links ul a {
+    color: #a9a9a9;
+    text-decoration: none
+}
+
+.footer-inner-links ul a:hover {
+    color: #dbdbdb
+}
+
+.footer-links {
+    list-style-type: none;
+    text-align: center
+}
+
+.footer-links a {
+    margin: 0 5px;
+    text-decoration: none;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border: solid #4f828d 1px;
+    color: #a9c8bf;
+    padding: 4px 10px;
+    transition: .3s all ease-in-out;
+}
+
+.footer-links a:hover,.footer-links a:focus {
+    border-color: #023e44;
+    color: #023e44;
+    background-color: #a9c8bf;
+    transition: .3s all ease-in-out;
+}
+
+.footer-links.active>a,.footer-links.active>a:hover,.footer-links.active>a:focus {
+    border-color: #023e44;
+    color: #023e44;
+    background-color: #a9c8bf;
+    transition: .3s all ease-in-out;
+}
+
+a.tiktok {
+    background-color: #ccc;
+    padding: 5px 7px;
+}
+.tiktok>img {
+    text-align: center;
+    opacity: 0.85;
+}
+a.tiktok:hover {
+    background-color: white;
+    opacity: 1;
+}
+a.instagram:hover {
+    background-color: #990be0;
+}
+a.instagram {
+    background-color: #609;
+}
+.category-list{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+.category-list .game-logo{ 
+	border: 3px solid #4f828d; 
+	margin: auto;
+}
+.category-list .game-logo:hover{ 
+	border: 3px solid #aee595; 
+}
+.category-list .game-sort-name{
+	margin: auto!important;
+	color: white;
+}
+.category-list .game-sort-name:hover{
+	margin: auto!important;
+	color: #007bff;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer-social li{ padding-top: 22px; }
+}
+
+.bg-footer-darker {
+    background-color: #003237;
+}
+
+.game-logo {
+    height: 50px;
+    width: 50px;
+}
+.page-footer {
+    border-top: 5px solid #c19a7a;
+}
+</style>

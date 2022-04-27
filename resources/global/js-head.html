@@ -1,0 +1,506 @@
+<script>
+var lastE = "";
+var b = document.documentElement;
+b.setAttribute("data-useragent",  navigator.userAgent);
+b.setAttribute("data-platform", navigator.platform );
+b.className += ((!!("ontouchstart" in window) || !!("onmsgesturechange" in window))?" touch":"");
+
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga("create", "==(main_analytics)==", "auto");
+ga("send", "pageview");
+ga("create", "==(analytics_client)==", "auto", "clientTracker");
+ga("clientTracker.send", "pageview");
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for(var i = 0;i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+ d.toUTCString();	
+	document.cookie = cname + "=" + cvalue + ";" + expires + "; domain=++(domain)++" + ";" + "path=/; SameSite=Strict; Secure";
+}
+
+function saveUtm(){
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value;
+  });
+  if( typeof( vars.utm_source	) 	== "string" ) setCookie("utm_source"	,	vars.utm_source		, 1);
+  if( typeof( vars.utm_campaign	) 	== "string" ) setCookie("utm_campaign"	,	vars.utm_campaign	, 1);
+  if( typeof( vars.utm_medium	) 	== "string" ) setCookie("utm_medium"	,	vars.utm_medium		, 1);
+  if( typeof( vars.utm_term		) 	== "string" ) setCookie("utm_term"		,	vars.utm_term		, 1);
+  if( typeof( vars.utm_content	) 	== "string" ) setCookie("utm_content"	,	vars.utm_content	, 1);
+  if( typeof( vars.pixelTracking) 	== "string" ) setCookie("pixelTracking"	,	vars.pixelTracking	, 1);
+}
+function getCurrentDate (){
+               let today = new Date();
+               let dd = String(today.getDate()).padStart(2, '0');
+               let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+               let yyyy = today.getFullYear();
+
+               today = mm + '/' + dd + '/' + yyyy;
+               return today;
+}
+function saveLastLogin(){
+                let today = getCurrentDate();
+		setCookie("lastLogin", today, 365);
+}
+function saveSession(data){
+	if( data.keep == true){
+		setCookie("id", data.id, 365);
+		setCookie("coins", data.coins, 365);
+		setCookie("nick", data.nick, 365);
+		setCookie("token", data.token, 365);
+		setCookie("tokenIDC", data.tokenIDC, 365);
+		setCookie("avatar", data.avatar, 365);
+		localStorage.setItem("password", data.password);
+	}else{
+		document.cookie = "id="+data.id+";domain=++(domain)++"+ ";" + "path=/; SameSite=Strict; Secure";
+		document.cookie = "coins="+data.coins+";domain=++(domain)++"+ ";" + "path=/; SameSite=Strict; Secure";
+		document.cookie = "nick="+data.nick+";domain=++(domain)++"+ ";" + "path=/; SameSite=Strict; Secure";
+		document.cookie = "token="+data.token+"; domain=++(domain)++" + ";" + "path=/; SameSite=Strict; Secure";
+		document.cookie = "tokenIDC="+data.tokenIDC+";domain=++(domain)++" + ";" + "path=/; SameSite=Strict; Secure";
+		document.cookie = "avatar="+data.avatar+";domain=++(domain)++"+ ";" + "path=/; SameSite=Strict; Secure";
+		sessionStorage.setItem("password", data.password);
+	}
+}
+function loadSession(field){
+	if( getCookie(field) != null && getCookie(field) != "" ){
+		return getCookie(field);
+	}else if( sessionStorage.getItem(field) != null  ){
+		return sessionStorage.getItem(field);
+	}else if( localStorage.getItem(field) != null  ){
+		return localStorage.getItem(field);
+	}else{
+		return false;
+	}
+}
+
+function deleteSession(){
+	setCookie("id", "", 0);
+	setCookie("coins", "", 0);
+	setCookie("nick", "", 0);
+	setCookie("token", "", 0);
+	// setCookie("games", "", 0);
+	localStorage.clear();
+	sessionStorage.clear();
+	$(".logged").hide();
+	$(".unlogged").show();
+	$(".runLogOff").click();
+	notLogged();
+}
+
+function notLogged(){
+	if( loadSession('token') == false){
+		if ( navigator.userAgent.indexOf("idclauncher") > 0 ){
+			cefDotNet.notLogged();
+		}
+		console.log("NotLogged");
+	}
+}
+
+function showCoins (coins){
+        $('#cWallet').html(coins);
+}
+
+function saveGames (games){
+        if (games && games != 'null'){
+            let gamesObject = JSON.parse (games);
+            sessionStorage.setItem("games", gamesObject.map(x=>x.IDJUEGO));
+        }
+        else {
+              sessionStorage.removeItem("games");
+       }
+}
+
+function login(user,pass,keep){
+	var res = {};
+
+	$.ajax({
+		type:"POST",
+		url:"/unilogin/token.php",
+		data: 'cNick='+user+'&cPassword='+pass+'&keep='+keep+'&cReferer=home',
+		dataType: 'text',
+		async:false,
+		error: function(objeto, quepaso, otroobj){
+			lastE = quepaso;
+			res = {
+				"rc": 500,
+				"txt": "KO",
+				"data": {}
+			};
+		},
+		success: function(json){
+			res = JSON.parse(json);
+			if (res.rc == 200){
+				saveSession(res.data);
+                                saveLastLogin();
+                                showCoins(res.data.wallet);
+                                saveGames(res.data.games);
+
+                                //sessionStorage.setItem("games", res.data.games.map(x=>x.IDJUEGO));
+			}else{
+				deleteSession();
+				res = {
+					"rc": 404,
+					"txt": "KO",
+					"data": {}
+				};
+			}
+		}
+	});	
+	
+	return res;
+}
+
+function registrar(user,pass,keep,utm_source,utm_campaign,utm_medium,utm_term,utm_content,pixelTracking){
+	var res = {};
+	$.ajax({
+		type:"POST",
+		url:"/unilogin/new_token.php",
+		data: 'cNick='+user+'&cPassword='+pass+'&keep='+keep+'&cUtm_Source='+utm_source+'&cUtm_Campaign='+utm_campaign+'&cUtm_Medium='+utm_medium+'&cUtm_Term='+utm_term+'&cUtm_Content='+utm_content+'&cPixelTracking ='+pixelTracking+'&cReferer=home',
+		dataType: 'text',
+		async:false,
+		error: function(objeto, quepaso, otroobj){
+			lastE = quepaso;
+			res = {
+				"rc": 500,
+				"txt": "KO",
+				"data": {}
+			};
+		},
+		success: function(json){
+			res = JSON.parse(json);
+			if (res.rc == 200){
+				saveSession(res.data);
+			}else{
+				deleteSession();
+				res = {
+					"rc": res.rc,
+					"txt": "KO",
+					"data": {}
+				};
+			}
+		}
+	});
+	return res;
+}
+function registrarGame(game_id){
+	$.ajax({
+		type:"POST",
+		url:"/unilogin/registro.game.php",
+		data: 'token='+loadSession('token')+'&game='+game_id,
+		dataType: 'text',
+		async:false,
+		error: function(objeto, quepaso, otroobj){
+			lastE = quepaso;
+			var res = {
+				"rc": 500,
+				"txt": "KO",
+				"data": {}
+			};
+			return res;
+		},
+		success: function(json){
+			var result = JSON.parse(json);
+			if (result.txt == "OK"){
+				loginTokenRegister( loadSession("token") );
+			}
+			if (result.rc == 200){
+				return result;
+			}
+		}
+	});
+}
+function playGame(game_id){
+	registrarGame(game_id);
+	if ( navigator.userAgent.indexOf("idclauncher") > 0 ){
+		cefDotNet.play(game_id);
+	}else{
+		var gameUrl = "/%%(game_seo)%%/";
+		if( gameUrl == "//") gameUrl = "/";
+		window.location.assign( gameUrl + "==(url_thankyou)==");
+	}
+}
+function getDownload(){
+	if( loadSession('token') != false){
+		var id = '';
+		$.ajax({
+			type:"POST",
+			url:"/unilogin/launcher.php",
+			data: 'token='+loadSession("token"),
+			dataType: 'text',
+			async:false,
+			success: function(json){
+				var result = JSON.parse(json);
+				if( typeof(result.data) != "undefined"){
+					id = result.data;
+				}
+			}
+		});
+		$.ajax({
+			url: '/launcher/==(launcher_filename)==',
+			method: 'GET',
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				var a = document.createElement('a');
+				var url = window.URL.createObjectURL(data);
+				a.href = url;
+				a.download = 'IDC-Games-launcher-V2'+id+'.exe';
+				document.body.append(a);
+				a.click();
+				a.remove();
+				window.URL.revokeObjectURL(url);
+			}
+		});
+	}else{
+		$("[data-target='.loginModal']:first").click();
+		$("body").on( "click", ".runLogIn", function() {
+			window.location.replace("/%%(game_seo)%%/==(url_thankyou)==");
+		});
+	}
+}
+function loginToken(token,typelog="") {
+	var isSuccess;
+	isSuccess = false;
+	if (token != '') {
+		$.ajax({
+			type:"POST",
+			url:"/unilogin/token.php",
+			data: 'token='+token,
+			dataType: 'text',
+			async:false,
+			success: function(json){
+				var result = JSON.parse(json);
+				if (result.rc == 200){
+                                        saveLastLogin();
+                                        $('#login_bars').hide();
+                                        $('#register_upper_menu').hide();
+                                        $('#nick_on_bar').show();
+                                        $('#nick_on_bar_inner').html(result.data.nick);
+                                        showCoins(result.data.wallet);
+                                        saveGames(result.data.games);
+                                        $('.not_login_menu').hide();
+                                        $('.logged_menu').show();
+                                        var avatar = loadSession("avatar");
+                                        if((typeof avatar !== 'undefined') && (avatar != '') && (avatar != 'null')) {
+
+	                                        $("#avataronmenu").attr("src","https://cdn.++(domain)++/images/avatar/users/" + avatar + ".png");
+
+                                        }	
+				}
+				else {
+                                        $('#login_bars').show();
+                                        $('#register_upper_menu').show();
+                                        $('.not_login_menu').show();
+                                        $('.logged_menu').hide();
+				}
+			}
+		});
+	}
+	return isSuccess;
+}
+function loginTokenRegister(token,typelog="") {
+	var isSuccess;
+	isSuccess = false;
+	if (token != '') {
+		$.ajax({
+			type:"POST",
+			url:"/unilogin/token.php",
+			data: 'token='+token,
+			dataType: 'text',
+			async:false,
+			success: function(json){
+				var result = JSON.parse(json);
+				if (result.rc == 200){
+                                        saveLastLogin();
+					$(".cUserName").text( result.data.nick );
+					$(".cUserNameIcon").attr("title", result.data.nick );
+					$(".cCoins").text( result.data.coins );
+                                        showCoins(result.data.wallet);
+                                        saveGames(result.data.games);
+					$(".logged").show();
+					$(".unlogged").hide();
+					$(".loginModal").click();
+					$("[href='//creativecommons.org/licenses/by/4.0/']:last").append(".");
+					saveSession(result.data);
+					isSuccess = result.data.token;
+					$(".runLogIn").click();
+					if( typelog == "NEW+IDC+USER" ){
+						if ( navigator.userAgent.indexOf("idclauncher") > 0 ){
+							window.location.replace('/');
+						}else{
+							window.location.replace('/==(url_thankyou)==');
+						}
+					}
+				}
+				notLogged();
+			}
+		});
+	}
+	return isSuccess;
+}
+
+function getUserData(token){
+	var isSuccess;
+	isSuccess = false;
+	if (token != '') {
+		$.ajax({
+			type:"POST",
+			url:"/unilogin/getUserData.php",
+			data: 'token='+token,
+			dataType: 'text',
+			async:false,
+			success: function(json){
+				var result = JSON.parse(json);
+				if (result.rc == 200){
+                                        $('#login_bars').hide();
+                                        $('#register_upper_menu').hide();
+                                        $('#nick_on_bar').show();
+                                        $('#nick_on_bar_inner').html(result.data.nick);
+                                        showCoins(result.data.wallet);
+                                        saveGames(result.data.games);
+                                        $('.not_login_menu').hide();
+                                        $('.logged_menu').show();
+	
+                                        var avatar = loadSession("avatar");
+                                        if((typeof avatar !== 'undefined') && (avatar != '') && (avatar != 'null')) {
+
+	                                        $("#avataronmenu").attr("src","https://cdn.++(domain)++/images/avatar/users/" + avatar + ".png");
+
+                                        }	
+                                        		/*$('#login_bars').hide();
+                                        		$('#register_upper_menu').hide();
+                                        		$('#nick_on_bar').show();
+                                        		$('#nick_on_bar_inner').html(result.data.nick);
+                                                        showCoins(result.data.wallet);
+                                                        saveGames(result.data.games);
+                                        		$('.not_login_menu').hide();
+                                        		$('.logged_menu').show();
+		
+                                        		var avatar = loadSession("avatar");
+                                        		if((typeof avatar !== 'undefined') && (avatar != '') && (avatar != 'null')) {
+		
+                                        		    $("#avataronmenu").attr("src","https://cdn.++(domain)++/images/avatar/users/" + avatar + ".png");	
+                                        		}*/
+                                }
+			}
+		});
+	}
+	return isSuccess;
+}
+function loginSocial(loginRes){
+	if ( navigator.userAgent.indexOf("idclauncher") > 0 ){
+		try {
+			(async function() {
+				await CefSharp.BindObjectAsync("cefDotNet", "bound");
+				cefDotNet.login( JSON.stringify(loginRes) );
+			})(loginRes);			
+		}catch(err){
+			console.log(err);
+		}
+	}
+}
+function socialAct(item){
+	item.token = loadSession("token");
+	if( loadSession('token') != false){
+		$.ajax({
+			type:"POST",
+			url:"/unilogin/action.php",
+			data: item,
+			dataType: 'text',
+			async:false,
+			success: function(json){
+				var result = JSON.parse(json);
+				if (result.rc == 200){
+					//action
+					console.log("ACTION OK");
+				}else{
+					console.log("ACTION KO");
+				}
+			}
+		});
+	}else{
+		$("[data-target='.loginModal']:first").click();
+		$("body").on( "click", ".runLogIn", function() {
+			socialAct(item);
+		});
+	}
+}
+function addScript( src , clase ) {
+  var s = document.createElement( 'script' );
+  s.setAttribute( 'src', src );
+  if ( typeof(clase) == "string" ){
+    s.setAttribute( 'class', clase );
+  }
+  document.body.appendChild( s );
+}
+
+
+function UrlExists(url)
+{
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status!=404;
+}
+
+function ImageExist(url) 
+{
+   var img = new Image();
+   img.src = url;
+   return img.height != 0;
+}
+
+function getWallet(token){
+        console.log ("getWallet");
+	if(!token) return;
+
+	$.ajax({
+		type:"POST",
+		url:"/unilogin/SoloLoginJuegoUnico.php",
+		data: `token=${token}`,
+		dataType: 'text',
+		error: function(objeto, quepaso, otroobj){
+			lastE = quepaso;
+			res = {
+				"rc": 500,
+				"txt": "KO",
+				"data": {}
+			};
+		},
+		success: function(json){
+			res = JSON.parse(json);
+			if (res.rc == 200){
+				$('#cWallet').length && $('#cWallet').text(res.data.cWalletIDC);
+				sessionStorage.setItem("games", res.data.TUsuarioJuego.TUsuarioJuegoRow.map(x=>x.IDJUEGO));
+			}else{
+				deleteSession();
+				res = {
+					"rc": 404,
+					"txt": "KO",
+					"data": {}
+				};
+			}
+		}
+	});
+}
+</script>

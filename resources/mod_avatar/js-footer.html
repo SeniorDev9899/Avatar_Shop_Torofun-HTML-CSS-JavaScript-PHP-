@@ -1,0 +1,526 @@
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.++(domain)++/js/jqueryRotate.min.js"></script>
+
+<script>
+    //--------------------------------------------------------------------------
+    //-----UNCOMMENT THIS TO SEE THE SAVING, LOADING AND REDIRECT PROCESS------
+    //--------------------------------------------------------------------------
+    // if (!loadSession("token")) {
+    //     window.location="https://==(language)==.++(domain)++/==(url_login)==";
+    // }
+    // var avatar = '0';
+    // var idUser = loadSession('id');
+    // var nickAvatar = loadSession('avatar');
+
+    if ((nickAvatar == '') || (nickAvatar == 'null')) {
+        var nickAvatar = 'girl_white_gray_1_3_0_2_1_0_0_1_0_0_0_0_0';
+    }
+
+    //--------------------------------------------------------------------------
+    //-----UNCOMMENT THIS TO SEE THE SAVING, LOADING AND REDIRECT PROCESS------
+    //--------------------------------------------------------------------------
+    // loadAvatar ('//cdn.++(domain)++/',nickAvatar);
+
+    //General
+    //IF UNDEFINED  'girl_white_gray_1_3_0_2_1_0_0_1_0_0_0_0_0'
+    var genderBase = asignDefaultValue(genderBase, 'girl');
+    var skinToneBase = asignDefaultValue(skinToneBase, 'white');
+    var hairColorBase = asignDefaultValue(hairColorBase, 'gray');
+    var faceBase = asignDefaultValue(faceBase, '1');
+    var hairBase = asignDefaultValue(hairBase, '3');
+    var shortsBase = asignDefaultValue(shortsBase, '0');
+    var trousersBase = asignDefaultValue(trousersBase, '2');
+    var shoesBase = asignDefaultValue(shoesBase, '1');
+    var skirtBase = asignDefaultValue(skirtBase, '0');
+    var dressBase = asignDefaultValue(dressBase, '0');
+    var shirtBase = asignDefaultValue(shirtBase, '1');
+    var jacketBase = asignDefaultValue(jacketBase, '0');
+    var beardBase = asignDefaultValue(beardBase, '0');
+    var accesoriesBase = asignDefaultValue(accesoriesBase, '0');
+    var glassesBase = asignDefaultValue(glassesBase, '0');
+    var hatBase = asignDefaultValue(hatBase, '0');
+
+    function asignDefaultValue(feature, defaultValue) {
+        return (typeof feature === 'undefined') ? defaultValue : feature;
+    }
+
+
+    //Random button
+    function randomizeAvatar(localurl) {
+
+        $rndGender = Math.floor(Math.random() * 10);
+        if ($rndGender % 2 == 0) {
+            changeGender(localurl, 'boy');
+            changeBeard(localurl, Math.floor(Math.random() * 7));
+            changeDress(localurl, 0);
+        }
+        else {
+            changeGender(localurl, 'girl');
+            changeBeard(localurl, 0);
+            changeShorts(localurl, 0);
+            changeDress(localurl, Math.floor(Math.random() * 15));
+        }
+
+        $rndTono = Math.floor(Math.random() * 4);
+        if ($rndTono == 0) {
+            changeSkinTon(localurl, 'white');
+        }
+        else if ($rndTono == 1) {
+            changeSkinTon(localurl, 'brown');
+        }
+        else if ($rndTono == 2) {
+            changeSkinTon(localurl, 'tanned');
+        }
+        else {
+            changeSkinTon(localurl, 'black');
+        }
+
+        $rndColorPelo = Math.floor(Math.random() * 5);
+        if ($rndColorPelo == 0) {
+            changeHairColor(localurl, 'brownHair');
+        }
+        else if ($rndColorPelo == 1) {
+            changeHairColor(localurl, 'gray');
+        }
+        else if ($rndColorPelo == 2) {
+            changeHairColor(localurl, 'blonde');
+        }
+        else if ($rndColorPelo == 3) {
+            changeHairColor(localurl, 'blackHair');
+        }
+        else if ($rndColorPelo == 4) {
+            changeHairColor(localurl, 'redhead');
+        }
+
+        changeHair(localurl, Math.floor(Math.random() * 18));
+        changeExpression(localurl, Math.floor(Math.random() * 21));
+
+        //Glasses
+        $glassesChance = Math.floor(Math.random() * 10);
+        if ($glassesChance % 2 >= 1) {
+            changeGlasses(localurl, Math.floor(0));
+        }
+        else {
+            changeGlasses(localurl, Math.floor(Math.random() * 12));
+        }
+        //50% camiseta 50% chaqueta
+        $rndCamvsCha = Math.floor(Math.random() * 10);
+        if ($rndCamvsCha % 2 == 0) {
+            changeJacket(localurl, Math.floor(0));
+        }
+        else {
+            changeJacket(localurl, Math.floor(Math.random() * 22));
+        }
+
+        changeShirt(localurl, Math.floor(Math.random() * 27));
+        changeShorts(localurl, Math.floor(Math.random() * 13));
+        changeTrousers(localurl, Math.floor(Math.random() * 21));
+        changeShoes(localurl, Math.floor(Math.random() * 25));
+
+    }
+
+    //Load avatar
+    function loadAvatar(localurl, avatarDesc) {
+
+        var avatarData = avatarDesc.split('_');
+
+        changeGender(localurl, avatarData[0]);
+        changeSkinTon(localurl, avatarData[1]);
+        changeHairColor(localurl, avatarData[2]);
+        changeExpression(localurl, avatarData[3]);
+        changeHair(localurl, avatarData[4]);
+        changeShorts(localurl, avatarData[5]);
+        changeTrousers(localurl, avatarData[6]);
+        changeShoes(localurl, avatarData[7]);
+        changeSkirt(localurl, avatarData[8]);
+        changeDress(localurl, avatarData[9]);
+        changeShirt(localurl, avatarData[10]);
+        changeJacket(localurl, avatarData[11]);
+        changeBeard(localurl, avatarData[12]);
+        changeAccesories(localurl, avatarData[13]);
+        changeGlasses(localurl, avatarData[14]);
+        changeHat(localurl, avatarData[15]);
+    }
+
+    //Save avatar (see save avatar.php)
+    function saveAvatar(idAvatar, idUsuario, redirect) {
+
+        console.log(' SALVANDO AVATAR ');
+        console.log(' Genero: ' + genderBase);
+        console.log(' Piel: ' + skinToneBase);
+        console.log(' Color Pelo: ' + hairColorBase);
+        console.log(' Face: ' + faceBase);
+        console.log(' Pelo: ' + hairBase);
+        console.log(' Bermudas: ' + shortsBase);
+        console.log(' Pantalon: ' + trousersBase);
+        console.log(' Shoes: ' + shoesBase);
+        console.log(' Skirt: ' + skirtBase);
+        console.log(' Dress: ' + dressBase);
+        console.log(' Camiseta: ' + shirtBase);
+        console.log(' Chaqueta: ' + jacketBase);
+        console.log(' Bigote: ' + beardBase);
+        console.log(' Accesories: ' + accesoriesBase);
+        console.log(' Gafas: ' + glassesBase);
+        console.log(' Hat: ' + hatBase);
+
+        $("#result").load('./saveavatar.php?user=' + idUsuario + '&gender=' + genderBase + '&tono=' + skinToneBase + '&color=' + hairColorBase + '&f=' + faceBase + '&h=' + hairBase + '&sho=' + shortsBase + '&t=' + trousersBase + '&s=' + shoesBase + '&sk=' + skirtBase + '&d=' + dressBase + '&sh=' + shirtBase + '&j=' + jacketBase + '&b=' + beardBase + '&a=' + accesoriesBase + '&g=' + glassesBase + '&ha=' + hatBase, function (response) {
+            setCookie("avatar", response, 365);
+            document.cookie = "avatar=" + response + ";domain=++(domain)++";
+            // redireccionamos
+            if (redirect != '') {
+                window.location.href = redirect;
+            }
+        });
+    }
+
+    function preSaveAvatar() {
+        console.log(' SALVANDO AVATAR ');
+        console.log(' Genero: ' + genderBase);
+        console.log(' Piel: ' + skinToneBase);
+        console.log(' Color Pelo: ' + hairColorBase);
+        console.log(' Face: ' + faceBase);
+        console.log(' Pelo: ' + hairBase);
+        console.log(' Bermudas: ' + shortsBase);
+        console.log(' Pantalon: ' + trousersBase);
+        console.log(' Shoes: ' + shoesBase);
+        console.log(' Skirt: ' + skirtBase);
+        console.log(' Dress: ' + dressBase);
+        console.log(' Camiseta: ' + shirtBase);
+        console.log(' Chaqueta: ' + jacketBase);
+        console.log(' Bigote: ' + beardBase);
+        console.log(' Accesories: ' + accesoriesBase);
+        console.log(' Gafas: ' + glassesBase);
+        console.log(' Hat: ' + hatBase);
+    }
+
+    //Change features
+    function changeGender(localurl, gender) {
+
+        genderBase = gender;
+        $('#base_avatar').attr("src", localurl + 'images/avatar/items/' + genderBase + '/body/' + skinToneBase + '.png');
+
+        if (gender == 'girl') {
+            $('.boy').hide();
+            $('.girl').show();
+            changeSkinTon(localurl, 'white');
+            changeHairColor(localurl, 'gray');
+            changeExpression(localurl, '1');
+            changeHair(localurl, '3');
+            changeShorts(localurl, '0');
+            changeTrousers(localurl, '0');
+            changeShoes(localurl, '0');
+            changeSkirt(localurl, '0');
+            changeDress(localurl, '0');
+            changeShirt(localurl, '0');
+            changeJacket(localurl, '0');
+            changeBeard(localurl, '0');
+            changeAccesories(localurl, '0');
+            changeGlasses(localurl, '0');
+            changeHat(localurl, '0');
+        }
+
+        else {
+            $('.boy').show();
+            $('.girl').hide();
+            changeSkinTon(localurl, 'white');
+            changeHairColor(localurl, 'gray');
+            changeExpression(localurl, '1');
+            changeHair(localurl, '1');
+            changeShorts(localurl, '0');
+            changeTrousers(localurl, '0');
+            changeShoes(localurl, '0');
+            changeSkirt(localurl, '0');
+            changeDress(localurl, '0');
+            changeShirt(localurl, '0');
+            changeJacket(localurl, '0');
+            changeBeard(localurl, '0');
+            changeAccesories(localurl, '0');
+            changeGlasses(localurl, '0');
+            changeHat(localurl, '0');
+        }
+    }
+
+    function changeSkinTon(localurl, color) {
+        skinToneBase = color;
+        $('#base_avatar').attr("src", localurl + 'images/avatar/items/' + genderBase + '/body/' + color + '.png');
+    }
+
+    function changeHairColor(localurl, color) {
+        hairColorBase = color;
+        $('#base_beard').attr("src", localurl + 'images/avatar/items/boy/beard/' + hairColorBase + '/b' + beardBase + '.png');
+        $('#base_hair').attr("src", localurl + 'images/avatar/items/' + genderBase + '/hair/' + color + '/h' + hairBase + '.png');
+    }
+
+    function changeBeard(localurl, idBeard) {
+        beardBase = idBeard;
+        $('#base_beard').attr("src", localurl + 'images/avatar/items/boy/beard/' + hairColorBase + '/b' + idBeard + '.png');
+    }
+
+    function changeHair(localurl, idHair) {
+        hairBase = idHair;
+        $('#base_hair').attr("src", localurl + 'images/avatar/items/' + genderBase + '/hair/' + hairColorBase + '/h' + idHair + '.png');
+    }
+
+    function changeExpression(localurl, idFace) {
+        faceBase = idFace;
+        $('#base_face').attr("src", localurl + 'images/avatar/items/' + genderBase + '/face/f' + idFace + '.png');
+    }
+
+    function changeShorts(localurl, idShorts) {
+        shortsBase = idShorts;
+        $('#base_shorts').attr("src", localurl + 'images/avatar/items/' + genderBase + '/shorts/sho' + idShorts + '.png');
+        if (idShorts != '0') {
+            changeTrousers(localurl, '0');
+            changeDress(localurl, '0');
+            changeSkirt(localurl, '0');
+        }
+    }
+
+    function changeTrousers(localurl, idTrousers) {
+        trousersBase = idTrousers;
+        $('#base_trousers').attr("src", localurl + 'images/avatar/items/' + genderBase + '/trousers/t' + idTrousers + '.png');
+        if (idTrousers != '0') {
+            changeShorts(localurl, '0');
+            changeDress(localurl, '0');
+            changeSkirt(localurl, '0');
+        }
+    }
+
+    function changeSkirt(localurl, idSkirt) {
+        skirtBase = idSkirt;
+        $('#base_skirt').attr("src", localurl + 'images/avatar/items/girl/skirt/sk' + idSkirt + '.png');
+        if (idSkirt != '0') {
+            changeShorts(localurl, '0');
+            changeDress(localurl, '0');
+            changeTrousers(localurl, '0');
+        }
+    }
+
+    function changeShirt(localurl, idShirt) {
+        shirtBase = idShirt;
+        $('#base_shirt').attr("src", localurl + 'images/avatar/items/' + genderBase + '/shirt/sh' + idShirt + '.png');
+        if (idShirt != '0') {
+            changeDress(localurl, '0');
+        }
+    }
+
+    function changeDress(localurl, idDress) {
+        dressBase = idDress;
+        $('#base_dress').attr("src", localurl + 'images/avatar/items/girl/dress/d' + idDress + '.png');
+        if (idDress != '0') {
+            changeShirt(localurl, '0');
+            changeTrousers(localurl, '0');
+            changeSkirt(localurl, '0');
+            changeShorts(localurl, '0');
+        }
+    }
+
+    function changeJacket(localurl, idJacket) {
+        jacketBase = idJacket;
+        $('#base_jacket').attr("src", localurl + 'images/avatar/items/' + genderBase + '/jacket/j' + idJacket + '.png');
+    }
+
+    function changeShoes(localurl, idShoes) {
+        shoesBase = idShoes;
+        $('#base_shoes').attr("src", localurl + 'images/avatar/items/' + genderBase + '/shoes/s' + idShoes + '.png');
+    }
+
+    function changeGlasses(localurl, idGlasses) {
+        glassesBase = idGlasses;
+        $('#base_glasses').attr("src", localurl + 'images/avatar/items/' + genderBase + '/glasses/g' + idGlasses + '.png');
+    }
+
+    function changeHat(localurl, idHat) {
+        hatBase = idHat;
+        $('#base_hat').attr("src", localurl + 'images/avatar/items/' + genderBase + '/hat/ha' + idHat + '.png');
+    }
+
+    function changeAccesories(localurl, idAccesories) {
+        accesoriesBase = idAccesories;
+        $('#base_accesories').attr("src", localurl + 'images/avatar/items/' + genderBase + '/accesories/a' + idAccesories + '.png');
+    }
+
+    function isSubCategorySame(object1, object2) {
+        return object1.subCategoryName == object2.subCategoryName;
+    }
+
+    var subCategories = [
+        { category: "body", subCategories: [] },
+        { category: "hair", subCategories: [] },
+        { category: "upper_clothes", subCategories: [] },
+        { category: "lower_clothes", subCategories: [] },
+        { category: "shoes", subCategories: [] },
+        { category: "accessories", subCategories: [] },
+    ];
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8000/app/get_all_contents",
+        success: function (data) {
+            data.forEach(function (val, i) {
+                if (val.category.categoryName == "body") {
+                    subCategories[0].subCategories.push({ subCategory: val.subCategory, items: val.item });
+                    renderToView(subCategories, "body", 0);
+                    renderToViewWithItems(subCategories, "body", 0);
+                } else if (val.category.categoryName == "hair") {
+                    subCategories[1].subCategories.push({ subCategory: val.subCategory, items: val.item });
+                    renderToView(subCategories, "hair", 1);
+                    renderToViewWithItems(subCategories, "hair", 1);
+                } else if (val.category.categoryName == "upper_clothes") {
+                    subCategories[2].subCategories.push({ subCategory: val.subCategory, items: val.item });
+                    renderToView(subCategories, "upper_clothes", 2);
+                    renderToViewWithItems(subCategories, "upper_clothes", 2);
+                } else if (val.category.categoryName == "lower_clothes") {
+                    subCategories[3].subCategories.push({ subCategory: val.subCategory, items: val.item });
+                    renderToView(subCategories, "lower_clothes", 3);
+                    renderToViewWithItems(subCategories, "lower_clothes", 3);
+                } else if (val.category.categoryName == "shoes") {
+                    subCategories[4].subCategories.push({ subCategory: val.subCategory, items: val.item });
+                    renderToView(subCategories, "shoes", 4);
+                    renderToViewWithItems(subCategories, "shoes", 4);
+                } else if (val.category.categoryName == "accessories") {
+                    subCategories[5].subCategories.push({ subCategory: val.subCategory, items: val.item });
+                    renderToView(subCategories, "accessories", 5);
+                    renderToViewWithItems(subCategories, "accessories", 5);
+                }
+            });
+
+            console.log("Sub Categories => ", subCategories);
+        }
+    });
+
+    function renderToView(data, id, index) {
+        var shtml = "";
+        data[index].subCategories.forEach(function (value, index) {
+            var countForBoy = 0;
+            var countForGirl = 0;
+            value.items.forEach(function (item, i) {
+                if (item.gender == "boy" || item.gender == "both") {
+                    countForBoy++;
+                }
+                if (item.gender == "girl" || item.gender == "both") {
+                    countForGirl++;
+                }
+            });
+            if (!countForBoy) {
+                shtml += "<li class='nav-item girl'>";
+            } else if (!countForGirl) {
+                shtml += "<li class='nav-item boy'>";
+            } else {
+                shtml += "<li class='nav-item'>";
+            }
+            if (index) {
+                shtml += "<a class='nav-link link-zoom-regular' href='#" + value.subCategory.subCategoryName + "' data-toggle='tab'>" + value.subCategory.subCategoryName + "</a>";
+            } else {
+                shtml += "<a class='nav-link link-zoom-regular active' href='#" + value.subCategory.subCategoryName + "' data-toggle='tab'>" + value.subCategory.subCategoryName + "</a>";
+            }
+            shtml += "</li>";
+        });
+        document.getElementById(`${id}` + "-subCategories").innerHTML = shtml;
+    }
+
+    function renderViewWithGenderItem(value, genderItems, gender) {
+        var shtml = "";
+        if (gender == "boy") {
+            shtml += "<div class='gallery-section bg-brown boy' style='display:none;'>";
+        } else {
+            shtml += "<div class='gallery-section bg-brown girl'>";
+        }
+        genderItems.forEach(function (item, index3) {
+            if (item.inOffer && item.isNew) {
+                shtml += "<div class='image-wrapper non-active d-flex flex-column new sale' ";
+            } else if (item.inOffer && !item.isNew) {
+                shtml += "<div class='image-wrapper non-active d-flex flex-column sale' ";
+            } else if (item.isNew && !item.inOffer) {
+                shtml += "<div class='image-wrapper non-active d-flex flex-column new' ";
+            } else if (item.isPurchased) {
+                shtml += "<div class='image-wrapper non-active d-flex flex-column purchased " + item.gender + "'";
+            } else {
+                shtml += "<div class='image-wrapper non-active d-flex flex-column '";
+            }
+
+            if (value.subCategory.subCategoryName == "Expression") {
+                shtml += 'onclick="' + item.itemFunctionName + "(" + "'//cdn.torofun.com/', " + "'" + `${index3 + 1}` + "'" + ');" + >';
+            } else if (value.subCategory.subCategoryName == "HairStyle" || value.subCategory.subCategoryName == "t_shirt" || value.subCategory.subCategoryName == "dress" || value.subCategory.subCategoryName == "jacket" || value.subCategory.subCategoryName == "trousers" || value.subCategory.subCategoryName == "shorts" || value.subCategory.subCategoryName == "skirts" || value.subCategory.subCategoryName == "shoes" || value.subCategory.subCategoryName == "glasses" || value.subCategory.subCategoryName == "hats" || value.subCategory.subCategoryName == "other-accessories") {
+                shtml += 'onclick="' + item.itemFunctionName + "(" + "'//cdn.torofun.com/', " + "'" + `${index3}` + "'" + ');" + >';
+            }
+            if (item.inOffer) {
+                shtml += "<div class='ribbon ribbon-top-left'>";
+                shtml += "<span>Offer</span>";
+                shtml += "</div>";
+            }
+            shtml += "<span class='cart-button position-absolute'> <i class='fas fa-shopping-cart fa-sm'></i> </span>";
+            shtml += "<img src='";
+            shtml += item.itemUrl;
+            shtml += "'" + "class='img-tn' />";
+            if (item.isNew || item.inOffer) {
+                var percent = ((item.itemOriginalPrice - item.itemPrice) / item.itemOriginalPrice) * 100;
+                shtml += "<span class='price position-relative text-center w-100'> <div class='new-item-wrapper'><span class='new-item-text'>New</span></div>";
+                shtml += "<div class='discount-amount position-absolute px-2'> <span class='sale-text'>" + percent + "%" + "</span>" + "<i class='fas fa-certificate'></i></div>";
+                shtml += "<div class='d-flex flex-row flex-nowrap align-items-center justify-content-center'> <span class='old-price pr-2'>" + item.itemOriginalPrice + "</span>" + "<span>" + item.itemPrice + "</span>";
+                shtml += "<svg class='torocoin' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.52 17.4'> <path class='cls-1' d='M9,13.82a.48.48,0,0,0-.44-.25H8a1.52,1.52,0,0,1-1.15-.42,1.76,1.76,0,0,1-.49-1l-.19-1.35h1a.36.36,0,0,0,.34-.21,1.07,1.07,0,0,0,.11-.46,1,1,0,0,0-.11-.46.35.35,0,0,0-.34-.2H6l-.3-2.21A4.48,4.48,0,0,0,8.94,2.89h0v0a.5.5,0,0,0-.27-.47,1.21,1.21,0,0,0-.58-.16,1.16,1.16,0,0,0-.59.16.5.5,0,0,0-.26.47v0A2.65,2.65,0,0,1,4.67,5.59,2.64,2.64,0,0,1,2.1,2.92v0a.5.5,0,0,0-.27-.47,1.18,1.18,0,0,0-.58-.16,1.16,1.16,0,0,0-.59.16.5.5,0,0,0-.26.46h0A4.41,4.41,0,0,0,4,7.31l.29,2.15H3.49a.34.34,0,0,0-.33.2.9.9,0,0,0-.12.46,1,1,0,0,0,.12.46.35.35,0,0,0,.33.21h.93l.19,1.35A3.45,3.45,0,0,0,5,13.36a3.5,3.5,0,0,0,.79,1,3.77,3.77,0,0,0,1,.62,3.14,3.14,0,0,0,1.21.23h.47A.48.48,0,0,0,9,14.92a1.09,1.09,0,0,0,.16-.54A1.08,1.08,0,0,0,9,13.82Z' /> </svg>";
+                shtml += "</div>";
+                shtml += "</span>";
+                shtml += "</div>";
+            } else {
+                shtml += "<div class='align-items-center d-flex flex-nowrap flex-row justify-content-center price w-100'><span class='text-center'>" + item.itemName + "</span>";
+                if (parseInt(item.itemName) >= 0) {
+                    shtml += "<svg class='torocoin' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.52 17.4'> <path class='cls-1' d='M9,13.82a.48.48,0,0,0-.44-.25H8a1.52,1.52,0,0,1-1.15-.42,1.76,1.76,0,0,1-.49-1l-.19-1.35h1a.36.36,0,0,0,.34-.21,1.07,1.07,0,0,0,.11-.46,1,1,0,0,0-.11-.46.35.35,0,0,0-.34-.2H6l-.3-2.21A4.48,4.48,0,0,0,8.94,2.89h0v0a.5.5,0,0,0-.27-.47,1.21,1.21,0,0,0-.58-.16,1.16,1.16,0,0,0-.59.16.5.5,0,0,0-.26.47v0A2.65,2.65,0,0,1,4.67,5.59,2.64,2.64,0,0,1,2.1,2.92v0a.5.5,0,0,0-.27-.47,1.18,1.18,0,0,0-.58-.16,1.16,1.16,0,0,0-.59.16.5.5,0,0,0-.26.46h0A4.41,4.41,0,0,0,4,7.31l.29,2.15H3.49a.34.34,0,0,0-.33.2.9.9,0,0,0-.12.46,1,1,0,0,0,.12.46.35.35,0,0,0,.33.21h.93l.19,1.35A3.45,3.45,0,0,0,5,13.36a3.5,3.5,0,0,0,.79,1,3.77,3.77,0,0,0,1,.62,3.14,3.14,0,0,0,1.21.23h.47A.48.48,0,0,0,9,14.92a1.09,1.09,0,0,0,.16-.54A1.08,1.08,0,0,0,9,13.82Z' /> </svg > ";
+                }
+                shtml += "</div></div>";
+            }
+        });
+        shtml += "</div>";
+        return shtml;
+    }
+
+    function renderToViewWithSubCategoryItemDetail(value) {
+        var shtml = "";
+        if (value.subCategory.subCategoryName == "Expression" || value.subCategory.subCategoryName == "HairStyle" || value.subCategory.subCategoryName == "t_shirt" || value.subCategory.subCategoryName == "dress" || value.subCategory.subCategoryName == "jacket" || value.subCategory.subCategoryName == "trousers" || value.subCategory.subCategoryName == "shorts" || value.subCategory.subCategoryName == "skirts" || value.subCategory.subCategoryName == "shoes" || value.subCategory.subCategoryName == "glasses" || value.subCategory.subCategoryName == "hats" || value.subCategory.subCategoryName == "other-accessories") {
+            var itemsForBoy = getItemsForGender(value.items, "boy");
+            var renderedWithBoy = renderViewWithGenderItem(value, itemsForBoy, "boy");
+            var itemsForGirl = getItemsForGender(value.items, "girl");
+            var renderedWithGirl = renderViewWithGenderItem(value, itemsForGirl, "girl");
+            return renderedWithBoy + renderedWithGirl + "</div>";
+        } else {
+            shtml += "<div class='gallery-section d-flex align-items-md-center justify-content-md-center'>";
+            value.items.forEach(function (item, index2) {
+                shtml += "<div class='image-wrapper non-active'>";
+                shtml += "<img src=" + "'" + item.itemUrl + "'" + " class='img-tn'";
+                shtml += ' onclick="' + item.itemFunctionName + "(" + "'//cdn.++(domain)++/', " + "'" + item.itemName + "'" + ');" />';
+                shtml += "</div>";
+            });
+            shtml += "</div>";
+            shtml += "</div>";
+            return shtml;
+        }
+    }
+
+    function renderToViewWithItems(data, id, index1) {
+        var shtml = "";
+        data[index1].subCategories.forEach(function (value, index2) {
+            if (index2) {
+                shtml += "<div class='tab-pane' " + "id='" + value.subCategory.subCategoryName + "'" + ">";
+            } else {
+                shtml += "<div class='tab-pane active' " + "id='" + value.subCategory.subCategoryName + "'" + ">";
+            }
+            shtml += renderToViewWithSubCategoryItemDetail(value);
+            document.getElementById(`${id}` + "-sub-items").innerHTML = shtml;
+        });
+    }
+
+    function getItemsForGender(array, gender) {
+        var items = [];
+        array.forEach(function (item, index) {
+            if (item.gender == gender || item.gender == "both") {
+                items.push(item);
+            }
+        });
+        return items;
+    }
+
+</script>
